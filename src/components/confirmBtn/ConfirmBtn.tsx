@@ -1,0 +1,1 @@
+import "./confirmBtn.scss";

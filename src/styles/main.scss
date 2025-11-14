@@ -1,0 +1,17 @@
+@use "./base/" as *;
+@use "./abstracts/" as *;
+
+button {
+  background-color: $colour-highlight;
+  color: $colour-pure-white;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    filter: brightness(120%);
+  }
+
+  &:active {
+    background-color: $colour-main;
+  }
+}
