@@ -1,0 +1,6 @@
+@use "../../styles/base/" as *;
+@use "../../styles/abstracts/" as *;
+
+.logo {
+  @include flexCenter;
+}

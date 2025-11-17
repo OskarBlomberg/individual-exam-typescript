@@ -1,2 +1,18 @@
 @use "../../styles/base/" as *;
 @use "../../styles/abstracts/" as *;
+
+.logoMain {
+  height: 100%;
+  @include flexCenter;
+
+  &__heading {
+    font-size: 5rem;
+    margin-top: 0.5rem;
+  }
+
+  &__subtitle {
+    font-family: "Work Sans", sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.5em;
+  }
+}

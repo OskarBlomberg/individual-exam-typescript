@@ -1,6 +1,27 @@
 @use "./base/" as *;
 @use "./abstracts/" as *;
 
+body {
+  background-color: $colour-bg-light;
+  min-height: 100vh;
+  @include flexCenter;
+  justify-content: center;
+}
+
+main {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  color: $colour-highlight;
+}
+
+h2 {
+  color: $colour-main;
+}
+
 button {
   background-color: $colour-highlight;
   color: $colour-pure-white;
