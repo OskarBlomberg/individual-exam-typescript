@@ -15,11 +15,11 @@
   }
 
   &__form {
-    width: 100%;
-
+    padding: 1rem;
     &__subsection {
       border: none;
       border-top: 2px solid $colour-main;
+      margin-bottom: 1rem;
 
       &__title {
         text-transform: uppercase;
@@ -30,8 +30,9 @@
 
       &--general {
         display: grid;
+        gap: 1rem;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: repeat(6, 1rem 1fr);
+        grid-template-rows: repeat(3, 1rem 1fr);
         grid-template-areas:
           "dl tl"
           "di ti"
@@ -50,7 +51,7 @@
   background-color: $colour-bg-light;
   color: $colour-main;
   text-transform: uppercase;
-  transform: translate(1.3em, 50%);
+  transform: translate(1.3em, 150%);
 
   &--date {
     grid-area: dl;
@@ -76,6 +77,11 @@
   background-color: $colour-bg-light;
   border: 2px solid $colour-main;
   border-radius: $rounding;
+
+  &:focus {
+    outline-color: $colour-highlight;
+    color: $colour-highlight;
+  }
 
   &--date {
     grid-area: di;
