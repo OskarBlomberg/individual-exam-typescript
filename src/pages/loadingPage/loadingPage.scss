@@ -1,9 +1,10 @@
 @use "../../styles/base/" as *;
 @use "../../styles/abstracts/" as *;
 
-.logoMain {
-  height: 100%;
+.loadingMain {
+  height: 100vh;
   @include flexCenter;
+  justify-content: center;
 
   &__heading {
     font-size: 5rem;

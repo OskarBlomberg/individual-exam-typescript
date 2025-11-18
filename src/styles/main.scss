@@ -4,8 +4,6 @@
 body {
   background-color: $colour-bg-light;
   min-height: 100vh;
-  @include flexCenter;
-  justify-content: center;
 }
 
 main {
