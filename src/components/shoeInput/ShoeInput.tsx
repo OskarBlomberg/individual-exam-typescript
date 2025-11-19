@@ -1,3 +1,4 @@
+import { useBookingStore } from "../../stores/bookingStore";
 import "./shoeInput.scss";
 
 interface shoeProps {
@@ -5,6 +6,8 @@ interface shoeProps {
 }
 
 export const ShoeInput = ({ num }: shoeProps) => {
+  const isLoading = useBookingStore((state) => state.isLoading);
+
   return (
     <article className="shoe-input">
       <label
@@ -24,7 +27,9 @@ export const ShoeInput = ({ num }: shoeProps) => {
         required
         aria-required
       />
-      <button className="remove-shoes-btn">-</button>
+      <button className="remove-shoes-btn" disabled={isLoading}>
+        -
+      </button>
     </article>
   );
 };

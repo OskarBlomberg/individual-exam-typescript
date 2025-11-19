@@ -4,11 +4,20 @@ import { ShoeInput } from "../../components/shoeInput/ShoeInput";
 import { useBookingStore } from "../../stores/bookingStore";
 import { useNavigate, type NavigateFunction } from "react-router-dom";
 import { type bookingInputs } from "../../interfaces";
+import { useEffect } from "react";
 
 export const BookingPage = () => {
-  const fetchBooking = useBookingStore((state) => state.fetchBookings);
-
+  /* const fetchBooking = useBookingStore((state) => state.fetchBookings);
   const bookings = useBookingStore((state) => state.bookings);
+  const isSuccsess = useBookingStore((state) => state.isSuccess) */
+  const {
+    fetchBookings,
+    bookings,
+    isLoading,
+    error,
+    isSuccess,
+    resetIsSuccess,
+  } = useBookingStore();
 
   const navigate: NavigateFunction = useNavigate();
 
@@ -24,9 +33,15 @@ export const BookingPage = () => {
       shoes: formDataObj.getAll("shoes").map(Number),
     };
 
-    await fetchBooking(booking);
+    await fetchBookings(booking);
   };
-  console.log("bp", bookings);
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/confirmation");
+      resetIsSuccess();
+    }
+  }, [isSuccess]);
 
   // if isDone navigate("/routen")
 
@@ -39,8 +54,15 @@ export const BookingPage = () => {
         </Logotype>
       </section>
 
-      <form className="booking__form" onSubmit={handleSubmit}>
-        <fieldset className="booking__form__subsection booking__form__subsection--general">
+      <form
+        className="booking__form"
+        onSubmit={handleSubmit}
+        style={isLoading ? { opacity: 0.6, pointerEvents: "none" } : {}}
+      >
+        <fieldset
+          className="booking__form__subsection booking__form__subsection--general"
+          disabled={isLoading}
+        >
           <legend className="booking__form__subsection__title ">
             when, what & who
           </legend>
@@ -108,13 +130,18 @@ export const BookingPage = () => {
           />
         </fieldset>
 
-        <fieldset className="booking__form__subsection booking__form__subsection--shoes">
+        <fieldset
+          className="booking__form__subsection booking__form__subsection--shoes"
+          disabled={isLoading}
+        >
           <legend className="booking__form__subsection__title ">shoes</legend>
           <ShoeInput num={1} />
           <ShoeInput num={2} />
           <ShoeInput num={3} />
         </fieldset>
-        <button type="submit">Submit</button>
+        <button type="submit" disabled={isLoading}>
+          Submit
+        </button>
       </form>
       {/* isError && modalen */}
     </main>

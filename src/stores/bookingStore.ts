@@ -11,6 +11,7 @@ export const useBookingStore = create<bookingState>((set, get) => ({
   isLoading: false,
   error: null,
   isSuccess: false,
+  resetIsSuccess: () => set({ isSuccess: false }),
 
   fetchBookings: async (newBooking: bookingInputs) => {
     set({ isLoading: true });
