@@ -7,12 +7,8 @@ import { type bookingInputs } from "../../interfaces";
 import { useEffect } from "react";
 
 export const BookingPage = () => {
-  /* const fetchBooking = useBookingStore((state) => state.fetchBookings);
-  const bookings = useBookingStore((state) => state.bookings);
-  const isSuccsess = useBookingStore((state) => state.isSuccess) */
   const {
     fetchBookings,
-    bookings,
     isLoading,
     error,
     isSuccess,
@@ -44,12 +40,26 @@ export const BookingPage = () => {
     }
   }, [isSuccess]);
 
+  const stopInside = (e: React.MouseEvent<HTMLElement>) => {
+    e.stopPropagation();
+  };
+
   const errorSection = (
-    <aside className="error-modal" aria-live="assertive">
-      <h2>Error</h2>
-      <p>Something went wrong with your request. Please try again.</p>
-      <button onClick={resetError}>Close</button>
-    </aside>
+    <div className="error-section" onClick={resetError}>
+      <aside
+        className="error-section__modal"
+        aria-live="assertive"
+        onClick={stopInside}
+      >
+        <h2 className="error-section__modal__header">Error</h2>
+        <p className="error-section__modal__text">
+          Something went wrong with your request. Please try again.
+        </p>
+        <button className="text-btn" onClick={resetError}>
+          Close
+        </button>
+      </aside>
+    </div>
   );
 
   return (
@@ -149,9 +159,21 @@ export const BookingPage = () => {
           <ShoeInput num={1} />
           <ShoeInput num={2} />
           <ShoeInput num={3} />
+          <button
+            className="subsection__add-btn"
+            type="button"
+            title="Add shoes"
+            disabled={isLoading || error === typeof "string"}
+          >
+            +
+          </button>
         </fieldset>
-        <button type="submit" disabled={isLoading || error === typeof "string"}>
-          Submit
+        <button
+          className="text-btn text-btn--fullwidth"
+          type="submit"
+          disabled={isLoading || error === typeof "string"}
+        >
+          strIIIIIike!
         </button>
       </form>
       {error && errorSection}

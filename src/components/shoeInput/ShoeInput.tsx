@@ -31,6 +31,7 @@ export const ShoeInput = ({ num }: shoeProps) => {
       <button
         className="remove-shoes-btn"
         type="button"
+        title="Remove shoes"
         disabled={isLoading || error === typeof "string"}
       >
         -
