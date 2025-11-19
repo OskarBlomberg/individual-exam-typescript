@@ -4,9 +4,10 @@ import {
   type bookingInputs,
   type booking,
   type bookingState,
+  type shoeState,
 } from "../interfaces";
 
-export const useBookingStore = create<bookingState>((set, get) => ({
+export const useBookingStore = create<bookingState>((set) => ({
   bookings: [],
   isLoading: false,
   error: "null",
@@ -44,16 +45,12 @@ export const useBookingStore = create<bookingState>((set, get) => ({
   },
 }));
 
-/* 
-const createItem = async (newItem) => {
-    try {
-      const response = await axios.post(url, newItem);
-      setData((prevData) => [...(prevData || []), response.data]);
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-*/
+export const useShoeStore = create<shoeState>()((set) => ({
+  shoes: [],
+  addShoes(size) {
+    set((state) => ({ shoes: [...state.shoes, size] }));
+  },
+}));
 
 // landa på laddnignssidan i två sekunder
 // skickas vidare till booking

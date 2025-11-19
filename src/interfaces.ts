@@ -20,3 +20,8 @@ export interface bookingState {
   resetError: () => void;
   fetchBookings: (newBooking: bookingInputs) => Promise<void>;
 }
+
+export interface shoeState {
+  shoes: string[];
+  addShoes: (size: string) => void;
+}
