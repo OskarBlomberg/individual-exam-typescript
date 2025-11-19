@@ -1,56 +1,44 @@
 import { create } from "zustand";
 import axios from "axios";
+import {
+  type bookingInputs,
+  type booking,
+  type bookingState,
+} from "../interfaces";
 
-interface bookingInputs {
-  when: string;
-  lanes: number;
-  people: number;
-  shoes: number[];
-}
-
-interface booking extends bookingInputs {
-  price: number; // räknas ut på serversidan
-  id: string; // genereras på serversidan
-  active: boolean; // anges på serversidan.
-}
-
-interface bookingState {
-  fishies: any;
-  bookings: booking[];
-  isLoading: boolean;
-  error: string | null;
-  fetchBookings: (newBooking: bookingInputs) => Promise<void>;
-}
-
-export const useBookingStore = create<bookingState>((set) => ({
-  fishies: {},
+export const useBookingStore = create<bookingState>((set, get) => ({
   bookings: [],
   isLoading: false,
   error: null,
-  addBooking: (newConfirmation: booking) =>
-    set((state) => ({ bookings: [...state.bookings, newConfirmation] })),
+  isSuccess: false,
+
   fetchBookings: async (newBooking: bookingInputs) => {
+    set({ isLoading: true });
+    set({ error: null });
+    set({ isSuccess: false });
+
     const settings = {
       headers: {
         "x-api-key": import.meta.env.VITE_X_API_KEY,
         "Content-Type": "application/json",
       },
     };
-    const response = await axios.post(
-      "https://731xy9c2ak.execute-api.eu-north-1.amazonaws.com/booking",
-      newBooking,
-      settings
-    );
-    set({ fishies: await response.data });
-    console.log(response.data);
-    /* try {
+
+    try {
       const response = await axios.post(
         "https://731xy9c2ak.execute-api.eu-north-1.amazonaws.com/booking",
         newBooking,
         settings
       );
-      
-    } catch (error) {} */
+      set((state) => ({
+        bookings: [...state.bookings, response.data.bookingDetails],
+      }));
+      set({ isSuccess: true });
+    } catch (err: any) {
+      set({ error: err.message });
+    } finally {
+      set({ isLoading: false });
+    }
   },
 }));
 

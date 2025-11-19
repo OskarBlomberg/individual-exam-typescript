@@ -2,22 +2,33 @@ import "./bookingPage.scss";
 import { Logotype } from "../../components/logotype/Logotype";
 import { ShoeInput } from "../../components/shoeInput/ShoeInput";
 import { useBookingStore } from "../../stores/bookingStore";
+import { useNavigate, type NavigateFunction } from "react-router-dom";
+import { type bookingInputs } from "../../interfaces";
 
 export const BookingPage = () => {
   const fetchBooking = useBookingStore((state) => state.fetchBookings);
 
-  const handleSubmit = (formDataObj: any) => {
+  const bookings = useBookingStore((state) => state.bookings);
+
+  const navigate: NavigateFunction = useNavigate();
+
+  const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
+    const formDataObj = new FormData(event.target as HTMLFormElement);
+    event.preventDefault();
     const date = formDataObj.get("date");
     const time = formDataObj.get("time");
-    const booking = {
+    const booking: bookingInputs = {
       when: date + "T" + time,
       people: Number(formDataObj.get("people")),
       lanes: Number(formDataObj.get("lanes")),
       shoes: formDataObj.getAll("shoes").map(Number),
     };
 
-    fetchBooking(booking);
+    await fetchBooking(booking);
   };
+  console.log("bp", bookings);
+
+  // if isDone navigate("/routen")
 
   return (
     <main className="booking">
@@ -28,7 +39,7 @@ export const BookingPage = () => {
         </Logotype>
       </section>
 
-      <form className="booking__form" action={handleSubmit}>
+      <form className="booking__form" onSubmit={handleSubmit}>
         <fieldset className="booking__form__subsection booking__form__subsection--general">
           <legend className="booking__form__subsection__title ">
             when, what & who
@@ -105,6 +116,7 @@ export const BookingPage = () => {
         </fieldset>
         <button type="submit">Submit</button>
       </form>
+      {/* isError && modalen */}
     </main>
   );
 };
