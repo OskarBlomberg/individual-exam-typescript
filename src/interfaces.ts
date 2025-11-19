@@ -17,5 +17,6 @@ export interface bookingState {
   error: string | null;
   isSuccess: boolean;
   resetIsSuccess: () => void;
+  resetError: () => void;
   fetchBookings: (newBooking: bookingInputs) => Promise<void>;
 }

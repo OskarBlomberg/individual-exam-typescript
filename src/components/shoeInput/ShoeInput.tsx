@@ -7,6 +7,7 @@ interface shoeProps {
 
 export const ShoeInput = ({ num }: shoeProps) => {
   const isLoading = useBookingStore((state) => state.isLoading);
+  const error = useBookingStore((state) => state.error);
 
   return (
     <article className="shoe-input">
@@ -27,7 +28,11 @@ export const ShoeInput = ({ num }: shoeProps) => {
         required
         aria-required
       />
-      <button className="remove-shoes-btn" disabled={isLoading}>
+      <button
+        className="remove-shoes-btn"
+        type="button"
+        disabled={isLoading || error === typeof "string"}
+      >
         -
       </button>
     </article>

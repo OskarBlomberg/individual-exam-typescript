@@ -17,6 +17,7 @@ export const BookingPage = () => {
     error,
     isSuccess,
     resetIsSuccess,
+    resetError,
   } = useBookingStore();
 
   const navigate: NavigateFunction = useNavigate();
@@ -43,7 +44,13 @@ export const BookingPage = () => {
     }
   }, [isSuccess]);
 
-  // if isDone navigate("/routen")
+  const errorSection = (
+    <aside className="error-modal" aria-live="assertive">
+      <h2>Error</h2>
+      <p>Something went wrong with your request. Please try again.</p>
+      <button onClick={resetError}>Close</button>
+    </aside>
+  );
 
   return (
     <main className="booking">
@@ -57,11 +64,13 @@ export const BookingPage = () => {
       <form
         className="booking__form"
         onSubmit={handleSubmit}
-        style={isLoading ? { opacity: 0.6, pointerEvents: "none" } : {}}
+        style={
+          isLoading || error ? { opacity: 0.6, pointerEvents: "none" } : {}
+        }
       >
         <fieldset
           className="booking__form__subsection booking__form__subsection--general"
-          disabled={isLoading}
+          disabled={isLoading || error === typeof "string"}
         >
           <legend className="booking__form__subsection__title ">
             when, what & who
@@ -93,6 +102,8 @@ export const BookingPage = () => {
             type="time"
             name="time"
             id="time"
+            min="11:00"
+            max="23:00"
             required
             aria-required
           />
@@ -132,17 +143,18 @@ export const BookingPage = () => {
 
         <fieldset
           className="booking__form__subsection booking__form__subsection--shoes"
-          disabled={isLoading}
+          disabled={isLoading || error === typeof "string"}
         >
           <legend className="booking__form__subsection__title ">shoes</legend>
           <ShoeInput num={1} />
           <ShoeInput num={2} />
           <ShoeInput num={3} />
         </fieldset>
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" disabled={isLoading || error === typeof "string"}>
           Submit
         </button>
       </form>
+      {error && errorSection}
       {/* isError && modalen */}
     </main>
   );

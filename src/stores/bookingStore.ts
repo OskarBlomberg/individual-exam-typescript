@@ -9,9 +9,10 @@ import {
 export const useBookingStore = create<bookingState>((set, get) => ({
   bookings: [],
   isLoading: false,
-  error: null,
+  error: "null",
   isSuccess: false,
   resetIsSuccess: () => set({ isSuccess: false }),
+  resetError: () => set({ error: null }),
 
   fetchBookings: async (newBooking: bookingInputs) => {
     set({ isLoading: true });
