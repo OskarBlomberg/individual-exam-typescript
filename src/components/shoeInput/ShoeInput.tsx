@@ -24,7 +24,7 @@ export const ShoeInput = ({ num }: shoeProps) => {
         id="shoes"
         min={20}
         max={48}
-        placeholder="39"
+        placeholder="20 - 48"
         required
         aria-required
       />

@@ -30,6 +30,16 @@ export const BookingPage = () => {
       shoes: formDataObj.getAll("shoes").map(Number),
     };
 
+    if (booking.people > booking.lanes * 4) {
+      alert("Max 4 players per lane. You need to book more lanes.");
+      return;
+    }
+
+    if (booking.people !== booking.shoes.length) {
+      alert("Players and amount of shoes don't match.");
+      return;
+    }
+
     await fetchBookings(booking);
   };
 
@@ -130,6 +140,7 @@ export const BookingPage = () => {
             name="people"
             id="people"
             min={1}
+            placeholder="max 4 per lane"
             required
             aria-required
           />
