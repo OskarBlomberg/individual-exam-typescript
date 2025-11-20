@@ -10,10 +10,10 @@ export const LoadingPage = () => {
   }, 2000);
 
   return (
-    <main className="loadingMain">
+    <main className="loading-main">
       <Logotype>
-        <h1 className="loadingMain__heading">strajk</h1>
-        <h2 className="loadingMain__subtitle">bowling</h2>
+        <h1 className="loading-main__heading">strajk</h1>
+        <h2 className="loading-main__subtitle">bowling</h2>
       </Logotype>
     </main>
   );

@@ -7,8 +7,6 @@ export const ConfirmationPage = () => {
   const bookingsArr = useBookingStore((state) => state.bookings);
   console.log(bookingsArr);
 
-  // TODO: Fixa styling, fixa WHEN-input
-
   const toRender =
     bookingsArr.length < 1 ? (
       <h3>No current bookings</h3>
@@ -28,7 +26,7 @@ export const ConfirmationPage = () => {
               type="text"
               name="when"
               id="when"
-              value={when}
+              value={when.split("T").join(", ")}
               readOnly
               aria-readonly
             />

@@ -3,6 +3,7 @@ import { Layout } from "./Layout";
 import { LoadingPage } from "../pages/loadingPage/LoadingPage";
 import { BookingPage } from "../pages/bookingPage/BookingPage";
 import { ConfirmationPage } from "../pages/confirmationPage/ConfirmationPage";
+import { ErrorPage } from "../pages/errorPage/ErrorPage";
 
 export const AppRoutes: RouteObject[] = [
   {
@@ -20,6 +21,10 @@ export const AppRoutes: RouteObject[] = [
       {
         path: "/confirmation",
         element: <ConfirmationPage />,
+      },
+      {
+        path: "/*",
+        element: <ErrorPage />,
       },
     ],
   },
