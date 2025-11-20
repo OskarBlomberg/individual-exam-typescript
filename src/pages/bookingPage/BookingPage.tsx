@@ -117,7 +117,6 @@ export const BookingPage = () => {
             name="date"
             id="date"
             required
-            aria-required
           />
 
           <label
@@ -134,7 +133,6 @@ export const BookingPage = () => {
             min="11:00"
             max="23:00"
             required
-            aria-required
           />
 
           <label
@@ -152,7 +150,6 @@ export const BookingPage = () => {
             placeholder="max 4 per lane"
             /* ref={peopleRef} */
             required
-            aria-required
           />
 
           <label
@@ -169,7 +166,6 @@ export const BookingPage = () => {
             min={1}
             /* ref={lanesRef} */
             required
-            aria-required
           />
         </fieldset>
 

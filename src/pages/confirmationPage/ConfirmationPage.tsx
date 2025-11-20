@@ -27,7 +27,6 @@ export const ConfirmationPage = () => {
               id="when"
               value={when.split("T").join(", ")}
               readOnly
-              aria-readonly
             />
 
             <label
@@ -43,7 +42,6 @@ export const ConfirmationPage = () => {
               id="who"
               value={people}
               readOnly
-              aria-readonly
             />
 
             <label
@@ -59,7 +57,6 @@ export const ConfirmationPage = () => {
               id="lanesBooked"
               value={lanes}
               readOnly
-              aria-readonly
             />
             <label
               className="confirmed-booking__label confirmed-booking__label--booking-id"
@@ -74,7 +71,6 @@ export const ConfirmationPage = () => {
               id="booking-id"
               value={bookingId}
               readOnly
-              aria-readonly
             />
 
             <div className="confirmed-booking__input price-total">

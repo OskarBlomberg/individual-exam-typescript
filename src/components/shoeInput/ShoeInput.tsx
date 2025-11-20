@@ -28,7 +28,6 @@ export const ShoeInput = ({ num }: shoeProps) => {
         max={48}
         placeholder="20 - 48"
         required
-        aria-required
         value={shoes[num]}
         onChange={(e) => updateShoe(num, e.target.value)}
       />
