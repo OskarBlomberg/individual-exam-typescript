@@ -7,7 +7,7 @@ export interface bookingInputs {
 
 export interface booking extends bookingInputs {
   price: number; // räknas ut på serversidan
-  id: string; // genereras på serversidan
+  bookingId: string; // genereras på serversidan
   active: boolean; // anges på serversidan.
 }
 
@@ -16,6 +16,7 @@ export interface bookingState {
   isLoading: boolean;
   error: string | null;
   isSuccess: boolean;
+  setErrorMsg: (msg: string) => void;
   resetIsSuccess: () => void;
   resetError: () => void;
   fetchBookings: (newBooking: bookingInputs) => Promise<void>;

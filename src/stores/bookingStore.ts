@@ -10,8 +10,9 @@ import {
 export const useBookingStore = create<bookingState>((set) => ({
   bookings: [],
   isLoading: false,
-  error: "null",
+  error: null,
   isSuccess: false,
+  setErrorMsg: (msg: string) => set({ error: msg }),
   resetIsSuccess: () => set({ isSuccess: false }),
   resetError: () => set({ error: null }),
 
@@ -38,7 +39,10 @@ export const useBookingStore = create<bookingState>((set) => ({
       }));
       set({ isSuccess: true });
     } catch (err: any) {
-      set({ error: err.message });
+      console.error(err.message);
+      set({
+        error: "Something went wrong with your request. Please try again.",
+      });
     } finally {
       set({ isLoading: false });
     }

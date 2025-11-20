@@ -4,7 +4,7 @@ import { ShoeInput } from "../../components/shoeInput/ShoeInput";
 import { useBookingStore } from "../../stores/bookingStore";
 import { useNavigate, type NavigateFunction } from "react-router-dom";
 import { type bookingInputs } from "../../interfaces";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export const BookingPage = () => {
   const {
@@ -12,11 +12,15 @@ export const BookingPage = () => {
     isLoading,
     error,
     isSuccess,
+    setErrorMsg,
     resetIsSuccess,
     resetError,
   } = useBookingStore();
 
   const navigate: NavigateFunction = useNavigate();
+
+  /*   const lanesRef = useRef<HTMLInputElement>(null);
+  const peopleRef = useRef<HTMLInputElement>(null); */
 
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     const formDataObj = new FormData(event.target as HTMLFormElement);
@@ -31,12 +35,13 @@ export const BookingPage = () => {
     };
 
     if (booking.people > booking.lanes * 4) {
-      alert("Max 4 players per lane. You need to book more lanes.");
+      setErrorMsg("Max 4 players per lane. You need to book more lanes.");
+      //lanesRef.current?.focus();
       return;
     }
 
     if (booking.people !== booking.shoes.length) {
-      alert("Players and amount of shoes don't match.");
+      setErrorMsg("Players and amount of shoes don't match.");
       return;
     }
 
@@ -62,9 +67,7 @@ export const BookingPage = () => {
         onClick={stopInside}
       >
         <h2 className="error-section__modal__header">Error</h2>
-        <p className="error-section__modal__text">
-          Something went wrong with your request. Please try again.
-        </p>
+        <p className="error-section__modal__text">{error}</p>
         <button className="text-btn" onClick={resetError}>
           Close
         </button>
@@ -141,6 +144,7 @@ export const BookingPage = () => {
             id="people"
             min={1}
             placeholder="max 4 per lane"
+            /* ref={peopleRef} */
             required
             aria-required
           />
@@ -157,6 +161,7 @@ export const BookingPage = () => {
             name="lanes"
             id="lanes"
             min={1}
+            /* ref={lanesRef} */
             required
             aria-required
           />
