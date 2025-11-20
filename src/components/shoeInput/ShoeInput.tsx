@@ -6,6 +6,8 @@ interface shoeProps {
 }
 
 export const ShoeInput = ({ num }: shoeProps) => {
+  const { shoes, updateShoe, removeShoes } = useShoeStore();
+
   const isLoading = useBookingStore((state) => state.isLoading);
   const error = useBookingStore((state) => state.error);
 
@@ -15,7 +17,7 @@ export const ShoeInput = ({ num }: shoeProps) => {
         className="subsection__label subsection__label--shoes"
         htmlFor="shoes"
       >
-        shoe size / person {num}
+        shoe size / person {num + 1}
       </label>
       <input
         className="subsection__input subsection__input--shoes"
@@ -27,12 +29,15 @@ export const ShoeInput = ({ num }: shoeProps) => {
         placeholder="20 - 48"
         required
         aria-required
+        value={shoes[num]}
+        onChange={(e) => updateShoe(num, e.target.value)}
       />
       <button
         className="remove-shoes-btn"
         type="button"
         title="Remove shoes"
         disabled={isLoading || error === typeof "string"}
+        onClick={() => removeShoes(num)}
       >
         &ndash;
       </button>

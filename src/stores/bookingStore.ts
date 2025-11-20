@@ -2,12 +2,11 @@ import { create } from "zustand";
 import axios from "axios";
 import {
   type bookingInputs,
-  type booking,
   type bookingState,
   type shoeState,
 } from "../interfaces";
 
-export const useBookingStore = create<bookingState>((set, get) => ({
+export const useBookingStore = create<bookingState>((set) => ({
   bookings: [],
   isLoading: false,
   error: null,
@@ -54,8 +53,8 @@ export const useBookingStore = create<bookingState>((set, get) => ({
 
 export const useShoeStore = create<shoeState>()((set, get) => ({
   shoes: [],
-  addShoes(size) {
-    set((state) => ({ shoes: [...state.shoes, size] }));
+  addShoes() {
+    set((state) => ({ shoes: [...state.shoes, ""] }));
   },
   removeShoes(index: number) {
     set((state) => ({ shoes: state.shoes.filter((_, i) => i !== index) }));
@@ -64,6 +63,9 @@ export const useShoeStore = create<shoeState>()((set, get) => ({
     const updatedShoes = [...get().shoes];
     updatedShoes[index] = size;
     set(() => ({ shoes: updatedShoes }));
+  },
+  emptyShoeStore() {
+    set({ shoes: [] });
   },
 }));
 

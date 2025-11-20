@@ -24,5 +24,8 @@ export interface bookingState {
 
 export interface shoeState {
   shoes: string[];
-  addShoes: (size: string) => void;
+  addShoes: () => void;
+  removeShoes: (index: number) => void;
+  updateShoe: (index: number, size: string) => void;
+  emptyShoeStore: () => void;
 }

@@ -1,2 +1,40 @@
 @use "../../styles/base/" as *;
 @use "../../styles/abstracts/" as *;
+
+.navmenu {
+  &__img-container {
+    background-color: $colour-highlight-transp;
+    width: 48px;
+    height: 48px;
+    margin: 0.5rem 0 0 0.5rem;
+  }
+
+  &__nav {
+    display: none;
+    position: absolute;
+    top: 0;
+    height: 50vh;
+    background-color: $colour-bg-dark;
+  }
+
+  &__list {
+    @include flexCenter;
+    justify-content: center;
+    gap: 3rem;
+    list-style: none;
+  }
+
+  &__item {
+    &__link {
+      color: $colour-highlight;
+      display: block;
+      font-size: 3rem;
+      text-decoration: none;
+    }
+  }
+}
+
+:is(.navmenu:hover, .navmenu:focus-within) .navmenu__nav {
+  @include flexCenter;
+  justify-content: center;
+}

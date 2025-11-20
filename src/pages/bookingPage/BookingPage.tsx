@@ -1,7 +1,7 @@
 import "./bookingPage.scss";
 import { Logotype } from "../../components/logotype/Logotype";
 import { ShoeInput } from "../../components/shoeInput/ShoeInput";
-import { useBookingStore } from "../../stores/bookingStore";
+import { useBookingStore, useShoeStore } from "../../stores/bookingStore";
 import { useNavigate, type NavigateFunction } from "react-router-dom";
 import { type bookingInputs } from "../../interfaces";
 import { useEffect } from "react";
@@ -16,6 +16,8 @@ export const BookingPage = () => {
     resetIsSuccess,
     resetError,
   } = useBookingStore();
+
+  const { shoes, addShoes, emptyShoeStore } = useShoeStore();
 
   const navigate: NavigateFunction = useNavigate();
 
@@ -53,6 +55,7 @@ export const BookingPage = () => {
   useEffect(() => {
     if (isSuccess) {
       navigate("/confirmation");
+      emptyShoeStore();
       resetIsSuccess();
     }
   }, [isSuccess]);
@@ -175,12 +178,13 @@ export const BookingPage = () => {
           disabled={isLoading || error === typeof "string"}
         >
           <legend className="booking__form__subsection__title ">shoes</legend>
-          <ShoeInput num={1} />
-          <ShoeInput num={2} />
-          <ShoeInput num={3} />
+          {shoes.map((_, i) => (
+            <ShoeInput key={i} num={i} />
+          ))}
           <button
             className="subsection__add-btn"
             type="button"
+            onClick={addShoes}
             title="Add shoes"
             disabled={isLoading || error === typeof "string"}
           >
