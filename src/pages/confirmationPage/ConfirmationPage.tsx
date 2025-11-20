@@ -5,7 +5,6 @@ import "./confirmationPage.scss";
 
 export const ConfirmationPage = () => {
   const bookingsArr = useBookingStore((state) => state.bookings);
-  console.log(bookingsArr);
 
   const toRender =
     bookingsArr.length < 1 ? (

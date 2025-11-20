@@ -1,4 +1,4 @@
-import { useBookingStore } from "../../stores/bookingStore";
+import { useBookingStore, useShoeStore } from "../../stores/bookingStore";
 import "./shoeInput.scss";
 
 interface shoeProps {
@@ -34,7 +34,7 @@ export const ShoeInput = ({ num }: shoeProps) => {
         title="Remove shoes"
         disabled={isLoading || error === typeof "string"}
       >
-        -
+        &ndash;
       </button>
     </article>
   );

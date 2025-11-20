@@ -4,7 +4,7 @@ import { ShoeInput } from "../../components/shoeInput/ShoeInput";
 import { useBookingStore } from "../../stores/bookingStore";
 import { useNavigate, type NavigateFunction } from "react-router-dom";
 import { type bookingInputs } from "../../interfaces";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 export const BookingPage = () => {
   const {
@@ -34,6 +34,7 @@ export const BookingPage = () => {
       shoes: formDataObj.getAll("shoes").map(Number),
     };
 
+    /* validation of lanes & shoes */
     if (booking.people > booking.lanes * 4) {
       setErrorMsg("Max 4 players per lane. You need to book more lanes.");
       //lanesRef.current?.focus();
@@ -48,6 +49,7 @@ export const BookingPage = () => {
     await fetchBookings(booking);
   };
 
+  /* navigate on success */
   useEffect(() => {
     if (isSuccess) {
       navigate("/confirmation");
@@ -55,6 +57,7 @@ export const BookingPage = () => {
     }
   }, [isSuccess]);
 
+  /* error modal */
   const stopInside = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
   };
@@ -74,7 +77,7 @@ export const BookingPage = () => {
       </aside>
     </div>
   );
-
+  /* main component */
   return (
     <main className="booking">
       <section className="booking__logo">
@@ -193,7 +196,6 @@ export const BookingPage = () => {
         </button>
       </form>
       {error && errorSection}
-      {/* isError && modalen */}
     </main>
   );
 };

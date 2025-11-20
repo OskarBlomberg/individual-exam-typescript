@@ -7,7 +7,7 @@ import {
   type shoeState,
 } from "../interfaces";
 
-export const useBookingStore = create<bookingState>((set) => ({
+export const useBookingStore = create<bookingState>((set, get) => ({
   bookings: [],
   isLoading: false,
   error: null,
@@ -35,7 +35,10 @@ export const useBookingStore = create<bookingState>((set) => ({
         settings
       );
       set((state) => ({
-        bookings: [...state.bookings, response.data.bookingDetails],
+        bookings: [
+          ...state.bookings,
+          response.data.bookingDetails || response.data.data.bookingDetails,
+        ],
       }));
       set({ isSuccess: true });
     } catch (err: any) {
@@ -49,10 +52,18 @@ export const useBookingStore = create<bookingState>((set) => ({
   },
 }));
 
-export const useShoeStore = create<shoeState>()((set) => ({
+export const useShoeStore = create<shoeState>()((set, get) => ({
   shoes: [],
   addShoes(size) {
     set((state) => ({ shoes: [...state.shoes, size] }));
+  },
+  removeShoes(index: number) {
+    set((state) => ({ shoes: state.shoes.filter((_, i) => i !== index) }));
+  },
+  updateShoe(index: number, size: string) {
+    const updatedShoes = [...get().shoes];
+    updatedShoes[index] = size;
+    set(() => ({ shoes: updatedShoes }));
   },
 }));
 
