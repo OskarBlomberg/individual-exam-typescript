@@ -1,21 +1,34 @@
+import { useState } from "react";
 import "./navMenu.scss";
 import { Link } from "react-router-dom";
 
 export const NavMenu = () => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+
+  const toggleVisible = () => setIsVisible(!isVisible);
+
   return (
     <div className="navmenu">
-      <div className="navmenu__img-container">
+      <div className="navmenu__img-container" onClick={toggleVisible}>
         <img src="src/assets/navicon.png" alt="menu" />
       </div>
-      <nav className="navmenu__nav">
+      <nav className={`navmenu__nav ${isVisible ? "visible" : ""}`}>
         <ul className="navmenu__list">
           <li className="navmenu__item">
-            <Link className="navmenu__item__link" to="/booking">
+            <Link
+              className="navmenu__item__link"
+              to="/booking"
+              onClick={toggleVisible}
+            >
               Booking
             </Link>
           </li>
           <li className="navmenu__item">
-            <Link className="navmenu__item__link" to="/confirmation">
+            <Link
+              className="navmenu__item__link"
+              to="/confirmation"
+              onClick={toggleVisible}
+            >
               Confirmation
             </Link>
           </li>

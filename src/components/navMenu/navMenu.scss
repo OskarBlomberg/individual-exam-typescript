@@ -7,13 +7,18 @@
     width: 48px;
     height: 48px;
     margin: 0.5rem 0 0 0.5rem;
+    position: fixed;
+    z-index: 2;
   }
 
   &__nav {
     display: none;
-    position: absolute;
+    position: fixed;
+    z-index: 1;
     top: 0;
-    height: 50vh;
+    left: 0;
+    width: 100%;
+    height: 100vh;
     background-color: $colour-bg-dark;
   }
 
@@ -34,7 +39,7 @@
   }
 }
 
-:is(.navmenu:hover, .navmenu:focus-within) .navmenu__nav {
+.visible {
   @include flexCenter;
   justify-content: center;
 }
