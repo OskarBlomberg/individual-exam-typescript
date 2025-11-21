@@ -39,10 +39,10 @@ export const ConfirmationPage = () => {
             </label>
             <input
               className="confirmed-booking__input confirmed-booking__input--who"
-              type="number"
+              type="text"
               name="who"
               id="who"
-              value={people}
+              value={`${people} ${people > 1 ? "people" : "person"}`}
               readOnly
             />
 
@@ -54,10 +54,10 @@ export const ConfirmationPage = () => {
             </label>
             <input
               className="confirmed-booking__input confirmed-booking__input--lanesBooked"
-              type="number"
+              type="text"
               name="lanesBooked"
               id="lanesBooked"
-              value={lanes}
+              value={`${lanes} ${lanes > 1 ? "lanes" : "lane"}`}
               readOnly
             />
             <label
