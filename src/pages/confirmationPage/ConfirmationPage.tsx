@@ -2,11 +2,16 @@ import { Logotype } from "../../components/logotype/Logotype";
 import { useBookingStore } from "../../stores/stores";
 import "../bookingPage/bookingPage.scss";
 import "./confirmationPage.scss";
-import type { JSX } from "react";
+import { useState, type JSX } from "react";
 import { type booking } from "../../interfaces";
+import Confetti from "../../components/confetti/Confetti";
 
 export const ConfirmationPage = () => {
   const bookingsArr: booking[] = useBookingStore((state) => state.bookings);
+
+  const [showConfetti, setShowConfetti] = useState<boolean>(false);
+
+  const addCelebration = () => setShowConfetti(true);
 
   const toRender: JSX.Element | JSX.Element[] =
     bookingsArr.length < 1 ? (
@@ -85,27 +90,36 @@ export const ConfirmationPage = () => {
     );
 
   return (
-    <main className="confirmation">
-      <section className="confirmation__logo">
-        <Logotype>
-          <h1 className="confirmation__logo__heading">confirmation</h1>
-          <></>
-        </Logotype>
-      </section>
-      <form className="confirmation__form">
-        <fieldset className="confirmation__form__subsection">
-          <legend className="confirmation__form__subsection__title ">
-            see you soon!
-          </legend>
-        </fieldset>
-        {toRender}
-        {bookingsArr.length > 0 && (
-          <button type="button" className="text-btn text-btn--fullwidth">
-            Sweet, let's go!
-          </button>
-        )}
-      </form>
-      <div className="revealer"></div>
-    </main>
+    <>
+      {showConfetti && (
+        <Confetti onConfettiComplete={() => setShowConfetti(false)} />
+      )}
+      <main className="confirmation">
+        <section className="confirmation__logo">
+          <Logotype>
+            <h1 className="confirmation__logo__heading">confirmation</h1>
+            <></>
+          </Logotype>
+        </section>
+        <form className="confirmation__form">
+          <fieldset className="confirmation__form__subsection">
+            <legend className="confirmation__form__subsection__title ">
+              see you soon!
+            </legend>
+          </fieldset>
+          {toRender}
+          {bookingsArr.length > 0 && (
+            <button
+              type="button"
+              className="text-btn text-btn--fullwidth"
+              onClick={addCelebration}
+            >
+              Sweet, let's go!
+            </button>
+          )}
+        </form>
+        <div className="revealer"></div>
+      </main>
+    </>
   );
 };
