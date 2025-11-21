@@ -2,11 +2,13 @@ import { Logotype } from "../../components/logotype/Logotype";
 import { useBookingStore } from "../../stores/stores";
 import "../bookingPage/bookingPage.scss";
 import "./confirmationPage.scss";
+import type { JSX } from "react";
+import { type booking } from "../../interfaces";
 
 export const ConfirmationPage = () => {
-  const bookingsArr = useBookingStore((state) => state.bookings);
+  const bookingsArr: booking[] = useBookingStore((state) => state.bookings);
 
-  const toRender =
+  const toRender: JSX.Element | JSX.Element[] =
     bookingsArr.length < 1 ? (
       <p>No current bookings</p>
     ) : (

@@ -1,9 +1,9 @@
 import "./loadingPage.scss";
 import { Logotype } from "../../components/logotype/Logotype";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, type NavigateFunction } from "react-router-dom";
 
 export const LoadingPage = () => {
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
   setTimeout(() => {
     navigate("/booking", { replace: true });

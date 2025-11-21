@@ -48,7 +48,7 @@ export const BookingPage = () => {
   };
 
   /* navigate on success */
-  useEffect(() => {
+  useEffect((): void => {
     if (isSuccess) {
       navigate("/confirmation");
       emptyShoeStore();
@@ -57,7 +57,7 @@ export const BookingPage = () => {
   }, [isSuccess]);
 
   /* error modal */
-  const stopInside = (e: React.MouseEvent<HTMLElement>) => {
+  const stopInside = (e: React.MouseEvent<HTMLElement>): void => {
     e.stopPropagation();
   };
 
@@ -186,7 +186,7 @@ export const BookingPage = () => {
           type="submit"
           disabled={isLoading || error === typeof "string"}
         >
-          strIIIIIike!
+          {isLoading ? "loading..." : "strIIIIIike!"}
         </button>
       </form>
       {error && errorSection}

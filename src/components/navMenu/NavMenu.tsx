@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 export const NavMenu = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
-  const toggleVisible = () => setIsVisible(!isVisible);
+  const toggleVisible = (): void => setIsVisible((prev) => !prev);
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
+  const handleKeyDown = (event: React.KeyboardEvent): void => {
     if (event.key === "Enter") {
       toggleVisible();
     }
