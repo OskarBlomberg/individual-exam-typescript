@@ -8,7 +8,7 @@ export const ConfirmationPage = () => {
 
   const toRender =
     bookingsArr.length < 1 ? (
-      <h3>No current bookings</h3>
+      <p>No current bookings</p>
     ) : (
       bookingsArr.map((booking) => {
         const { when, people, lanes, price, bookingId } = booking;
@@ -97,10 +97,13 @@ export const ConfirmationPage = () => {
           </legend>
         </fieldset>
         {toRender}
-        <button type="button" className="text-btn text-btn--fullwidth">
-          Sweet, let's go!
-        </button>
+        {bookingsArr.length > 0 && (
+          <button type="button" className="text-btn text-btn--fullwidth">
+            Sweet, let's go!
+          </button>
+        )}
       </form>
+      <div className="revealer"></div>
     </main>
   );
 };

@@ -196,6 +196,7 @@ export const BookingPage = () => {
         </button>
       </form>
       {error && errorSection}
+      <div className="revealer"></div>
     </main>
   );
 };

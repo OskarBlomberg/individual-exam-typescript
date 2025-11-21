@@ -6,7 +6,7 @@ export const LoadingPage = () => {
   const navigate = useNavigate();
 
   setTimeout(() => {
-    navigate("/booking");
+    navigate("/booking", { replace: true });
   }, 2000);
 
   return (
@@ -15,6 +15,7 @@ export const LoadingPage = () => {
         <h1 className="loading-main__heading">strajk</h1>
         <h2 className="loading-main__subtitle">bowling</h2>
       </Logotype>
+      <div className="cover"></div>
     </main>
   );
 };

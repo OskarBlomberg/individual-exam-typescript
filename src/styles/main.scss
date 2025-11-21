@@ -48,3 +48,24 @@ button {
     width: 100%;
   }
 }
+
+.revealer {
+  position: absolute;
+  z-index: 3;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  background: linear-gradient($colour-bg-light 90%, transparent);
+  transform-origin: bottom;
+  animation: reveal 0.3s linear forwards;
+}
+
+@keyframes reveal {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100vh);
+  }
+}
