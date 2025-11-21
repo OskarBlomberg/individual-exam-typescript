@@ -1,9 +1,33 @@
 @use "./base/" as *;
 @use "./abstracts/" as *;
 
+body {
+  background-color: $colour-bg-light;
+  min-height: 100vh;
+}
+
+main {
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1 {
+  color: $colour-highlight;
+}
+
+h2 {
+  color: $colour-main;
+}
+
 button {
   background-color: $colour-highlight;
   color: $colour-pure-white;
+  text-transform: uppercase;
+  border: none;
+  font-weight: 700;
+  font-size: 2rem;
+  min-height: 48px;
   cursor: pointer;
 
   &:hover,
@@ -13,5 +37,35 @@ button {
 
   &:active {
     background-color: $colour-main;
+  }
+}
+
+.text-btn {
+  padding: 0.5rem 1.5rem;
+  border-radius: $rounding;
+
+  &--fullwidth {
+    width: 100%;
+  }
+}
+
+.revealer {
+  position: absolute;
+  z-index: 3;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  background: linear-gradient($colour-bg-light 90%, transparent);
+  transform-origin: bottom;
+  animation: reveal 0.3s linear forwards;
+}
+
+@keyframes reveal {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100vh);
   }
 }

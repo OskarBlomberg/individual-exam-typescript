@@ -1,2 +1,45 @@
 @use "../../styles/base/" as *;
 @use "../../styles/abstracts/" as *;
+
+.loading-main {
+  height: 100vh;
+  @include flexCenter;
+  justify-content: center;
+
+  &__heading {
+    font-size: 5rem;
+    margin-top: 0.5rem;
+  }
+
+  &__subtitle {
+    font-family: "Work Sans", sans-serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.5em;
+  }
+
+  .cover {
+    position: absolute;
+    z-index: 3;
+    height: 100vh;
+    width: 100vw;
+    bottom: -100vh;
+    background: linear-gradient(transparent, $colour-bg-light 20%);
+    animation: coverOver 2s forwards;
+  }
+}
+
+@keyframes coverOver {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(0);
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: scale(1);
+    transform: translateY(-100%);
+  }
+}

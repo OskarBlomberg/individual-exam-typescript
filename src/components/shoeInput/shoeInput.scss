@@ -1,0 +1,29 @@
+@use "../../styles/base/" as *;
+@use "../../styles/abstracts/" as *;
+
+.shoe-input {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 48px;
+  grid-template-rows: 1rem 1fr;
+  grid-template-areas:
+    "sl .."
+    "si sb";
+  gap: 1rem;
+}
+
+.subsection__label--shoes {
+  grid-area: sl;
+}
+
+.subsection__input--shoes {
+  grid-area: si;
+}
+
+.remove-shoes-btn {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  grid-area: sb;
+  display: grid;
+  place-items: center;
+}

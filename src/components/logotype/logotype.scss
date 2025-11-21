@@ -1,0 +1,11 @@
+@use "../../styles/base/" as *;
+@use "../../styles/abstracts/" as *;
+
+.logo {
+  @include flexCenter;
+
+  &__img {
+    max-width: 100%;
+    height: auto;
+  }
+}

@@ -1,2 +1,146 @@
 @use "../../styles/base/" as *;
 @use "../../styles/abstracts/" as *;
+
+.booking {
+  padding: 1rem;
+  @include flexCenter;
+
+  &__logo {
+    flex: 0 1 190px;
+
+    &__heading {
+      font-size: 3.75rem;
+      margin-top: 0.4rem;
+    }
+  }
+
+  &__form {
+    padding: 1rem;
+    &__subsection {
+      border: none;
+      border-top: 2px solid $colour-main;
+      margin-bottom: 1rem;
+
+      &__title {
+        text-transform: uppercase;
+        color: $colour-main;
+        font-size: 2rem;
+        text-align: center;
+      }
+
+      &--general {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 1rem 1fr);
+        grid-template-areas:
+          "dl tl"
+          "di ti"
+          "pl pl"
+          "pi pi"
+          "ll ll"
+          "li li";
+      }
+
+      &--shoes {
+        @include flexCenter;
+        gap: 1rem;
+      }
+    }
+  }
+}
+
+.subsection__add-btn {
+  max-width: 48px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
+
+.subsection__label {
+  width: fit-content;
+  padding: 0 0.5em;
+  background-color: $colour-bg-light;
+  color: $colour-main;
+  text-transform: uppercase;
+  transform: translate(1.3em, 150%);
+
+  &--date {
+    grid-area: dl;
+  }
+
+  &--time {
+    grid-area: tl;
+  }
+
+  &--people {
+    grid-area: pl;
+  }
+
+  &--lanes {
+    grid-area: ll;
+  }
+}
+
+.subsection__input {
+  font-size: 1.2rem;
+  height: 3rem;
+  padding: 0.5em 0.6em;
+  background-color: $colour-bg-light;
+  border: 2px solid $colour-main;
+  border-radius: $rounding;
+
+  &:focus {
+    outline-color: $colour-highlight;
+    color: $colour-highlight;
+  }
+
+  &--date {
+    grid-area: di;
+  }
+
+  &--time {
+    grid-area: ti;
+  }
+
+  &--people {
+    grid-area: pi;
+  }
+
+  &--lanes {
+    grid-area: li;
+  }
+}
+
+/* Error modal */
+.error-section {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.116);
+
+  &__modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    background-color: $colour-bg-light;
+    border: 2px solid $colour-highlight;
+    border-radius: $rounding;
+    @include flexCenter;
+    gap: 1.5rem;
+
+    &__header {
+      font-size: 2rem;
+      color: $colour-highlight;
+    }
+
+    &__text {
+      font-size: 1.5rem;
+      text-align: center;
+    }
+  }
+}

@@ -1,2 +1,15 @@
 @use "../../styles/base/" as *;
 @use "../../styles/abstracts/" as *;
+
+.error-page {
+  @include flexCenter;
+  height: 100vh;
+  justify-content: center;
+  gap: 1rem;
+
+  &__msg {
+    color: $colour-highlight;
+    font-size: 3rem;
+    text-align: center;
+  }
+}
