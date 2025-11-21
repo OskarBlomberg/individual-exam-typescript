@@ -1,4 +1,4 @@
-import { useBookingStore, useShoeStore } from "../../stores/bookingStore";
+import { useBookingStore, useShoeStore } from "../../stores/stores";
 import "./shoeInput.scss";
 
 interface shoeProps {

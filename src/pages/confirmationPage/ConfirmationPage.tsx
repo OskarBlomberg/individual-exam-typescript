@@ -1,5 +1,5 @@
 import { Logotype } from "../../components/logotype/Logotype";
-import { useBookingStore } from "../../stores/bookingStore";
+import { useBookingStore } from "../../stores/stores";
 import "../bookingPage/bookingPage.scss";
 import "./confirmationPage.scss";
 

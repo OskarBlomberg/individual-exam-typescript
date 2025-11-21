@@ -1,7 +1,7 @@
 import "./bookingPage.scss";
 import { Logotype } from "../../components/logotype/Logotype";
 import { ShoeInput } from "../../components/shoeInput/ShoeInput";
-import { useBookingStore, useShoeStore } from "../../stores/bookingStore";
+import { useBookingStore, useShoeStore } from "../../stores/stores";
 import { useNavigate, type NavigateFunction } from "react-router-dom";
 import { type bookingInputs } from "../../interfaces";
 import { useEffect } from "react";
@@ -21,9 +21,6 @@ export const BookingPage = () => {
 
   const navigate: NavigateFunction = useNavigate();
 
-  /*   const lanesRef = useRef<HTMLInputElement>(null);
-  const peopleRef = useRef<HTMLInputElement>(null); */
-
   const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     const formDataObj = new FormData(event.target as HTMLFormElement);
     event.preventDefault();
@@ -39,7 +36,6 @@ export const BookingPage = () => {
     /* validation of lanes & shoes */
     if (booking.people > booking.lanes * 4) {
       setErrorMsg("Max 4 players per lane. You need to book more lanes.");
-      //lanesRef.current?.focus();
       return;
     }
 
@@ -148,7 +144,6 @@ export const BookingPage = () => {
             id="people"
             min={1}
             placeholder="max 4 per lane"
-            /* ref={peopleRef} */
             required
           />
 
@@ -164,7 +159,6 @@ export const BookingPage = () => {
             name="lanes"
             id="lanes"
             min={1}
-            /* ref={lanesRef} */
             required
           />
         </fieldset>

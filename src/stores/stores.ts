@@ -68,15 +68,3 @@ export const useShoeStore = create<shoeState>()((set, get) => ({
     set({ shoes: [] });
   },
 }));
-
-// landa på laddnignssidan i två sekunder
-// skickas vidare till booking
-// Antal skor och deras värde sparas i store i en array
-// när man trycker på strike verifieras formuläret
-// Error handling som modal
-// Om den går igenom skickas man till confirmation
-// svaret sparas i store i en array
-
-// genomförda bokningar - array med server responses
-// fetchhantering loading error data
-// Antalet iklickade skor och deras storlekar array med numbers
